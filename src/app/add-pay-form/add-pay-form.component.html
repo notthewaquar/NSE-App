@@ -1,0 +1,91 @@
+<form>
+<mat-card>
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Beneficiery Name:</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <!-- <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Agent Mobile Number:</mat-label>
+    <input matInput value="8967859713 ; 8927485537">
+  </mat-form-field> -->
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Sender Mobile Number:</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <!-- <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Agent Shop Name: </mat-label>
+    <input matInput value="NarayanShanti Enterprise">
+  </mat-form-field> -->
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Sender Name:</mat-label>
+    <input matInput>
+  </mat-form-field>
+</mat-card>
+<mat-card>
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Account Number:</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Type:</mat-label>
+    <mat-select>
+      <mat-option value="IMPS">IMPS</mat-option>
+      <mat-option value="NEFT">NEFT</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>IFCS Code:</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Bank Name:</mat-label>
+    <mat-select>
+      <mat-option value="IMPS">IMPS</mat-option>
+      <mat-option value="NEFT">NEFT</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Bank Name:</mat-label>
+    <input type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControl]="myBankNameControl"
+            [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let bankName of filteredBankNames | async" [value]="bankName">
+        {{bankName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="w-100" appearance="fill">
+    <mat-label>Amount:</mat-label>
+    <input matInput>
+  </mat-form-field>
+</mat-card>
+<mat-card>
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Transaction Id:</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field class="w-50" appearance="fill">
+    <mat-label>Status:</mat-label>
+    <mat-select>
+      <mat-option value="null" disabled selected></mat-option>
+      <mat-option value="SUCCESS">SUCCESS</mat-option>
+      <mat-option value="PENDING">PENDING</mat-option>
+      <mat-option value="AWAITED">AWAITED</mat-option>
+      <mat-option value="DENIED">DENIED</mat-option>
+      <mat-option value="REJECTED">REJECTED</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+<button 
+  mat-raised-button 
+  type="submit"
+  class="btn-submit"
+  color="primary">
+  Start Payment
+  <i class="fas fa-paper-plane"></i>
+  </button>
+</form>

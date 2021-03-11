@@ -1,0 +1,62 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav 
+  #sidenav
+  mode="over"
+  [(opened)]="opened"
+  (opened)="events.push('open!')"
+  (closed)="events.push('close!')">
+    <mat-toolbar>
+      Menu
+    </mat-toolbar>
+    <mat-nav-list>
+      <a 
+        mat-list-item
+        >
+        New Payment &nbsp;&nbsp;
+        <i class="fas fa-money-check"></i>
+      </a>
+      <mat-divider></mat-divider>
+      <a 
+        mat-list-item
+        >
+        Login/Logout &nbsp;&nbsp;
+        <i class="fas fa-user-circle"></i>
+      </a>
+        <!-- routerLinkActive="active" 
+        routerLink="/student" -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="sidenav.toggle()">
+        <i class="fa fa-bars"></i>
+      </button>
+      <span routerLink="/home">NS Enterprise</span>
+      <div style="margin-left: auto;" class="nav-menu-link">
+        <a 
+          mat-raised-button
+          routerLinkActive="active"
+          routerLink="/add-pay-form">
+          <!-- New Payment -->
+          <i class="fas fa-money-check"></i>
+        </a>
+        <a 
+          mat-raised-button
+          routerLinkActive="active" 
+          routerLink="/pay-success-invoice">
+          <!-- My Accounts -->
+          <i class="fas fa-user-circle"></i>
+        </a>
+      </div>
+    </mat-toolbar>
+    <!-- inner components -->
+    <router-outlet></router-outlet>
+    <!-- <app-add-pay-form></app-add-pay-form>
+    <app-pay-success-invoice></app-pay-success-invoice> -->
+    <!-- inner components -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

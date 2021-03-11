@@ -1,0 +1,37 @@
+form {
+  padding-bottom: 20px;
+}
+mat-card {
+  margin: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+}
+mat-card mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  /* width: calc(50% - 20px); */
+  margin: 0 10px;
+}
+.btn-submit {
+  display: block;
+  margin: auto;
+  font-size: 18px;
+}
+.btn-submit svg {
+  font-size: 15px;
+  margin-top: -3px;
+  margin-left: 3px;
+}
+.w-100 {
+  width: 100%;
+}
+.w-50 {
+  width: calc(50% - 20px);
+}
+@media only screen and (max-width: 500px) {
+  .w-sm-100 {
+    width: 100%;
+  }
+}

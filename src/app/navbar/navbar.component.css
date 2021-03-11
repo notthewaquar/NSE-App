@@ -1,0 +1,21 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+/* navbar desktop list */
+.nav-menu-link a {
+  margin-left: 5px;
+}
+.nav-menu-link a:first-child {
+  margin-left: 0;
+}
+/* mode=over SideBar */
+mat-sidenav {
+  width: 220px;
+}
+mat-sidenav-content {
+}
