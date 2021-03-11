@@ -32,6 +32,6 @@ mat-card mat-form-field {
 }
 @media only screen and (max-width: 500px) {
   .w-sm-100 {
-    width: 100%;
+    width: 100% !important;
   }
 }
