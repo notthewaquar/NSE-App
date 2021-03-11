@@ -14,10 +14,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PaySuccessInvoiceComponent } from './pay-success-invoice/pay-success-invoice.component';
 import { LoginComponent } from './login/login.component';
 import { AddPayFormComponent } from './add-pay-form/add-pay-form.component';
+import { HomePageComponent } from './home-page/home-page.component';
 // routing
 const appRoutes: Routes = [
-  {path: '', component: AddPayFormComponent},
-  {path: 'add-pay-form', component: AddPayFormComponent},
+  {path: '', component: NavbarComponent, children: [
+    {path: '', component: HomePageComponent},
+    {path: 'add-pay-form', component: AddPayFormComponent}
+  ]},
+  {path: 'account', component: LoginComponent},
   {path: 'pay-success-invoice', component: PaySuccessInvoiceComponent},
 ]; 
 @NgModule({
@@ -26,7 +30,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     PaySuccessInvoiceComponent,
     LoginComponent,
-    AddPayFormComponent
+    AddPayFormComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

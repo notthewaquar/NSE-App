@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // this is test
 import {FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -26,7 +27,9 @@ export class AddPayFormComponent implements OnInit {
   ];
   filteredBankNames: Observable<string[]>;
   
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.filteredBankNames = this.myBankNameControl.valueChanges.pipe(
@@ -39,5 +42,8 @@ export class AddPayFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.bankName.filter(bankName => bankName.toLowerCase().indexOf(filterValue) === 0);
+  }
+  gotoPayInfo() {
+    this.router.navigate(['/pay-success-invoice']);
   }
 }

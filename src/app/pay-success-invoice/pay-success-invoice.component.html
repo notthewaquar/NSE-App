@@ -1,1 +1,124 @@
-<p>pay-success-invoice works!</p>
+<div class="pay-invoice">
+  <div class="container-fluid">
+    <div class="logo-div">
+      <img src="assets/img/logo.png" alt="" class="logo" width="80">
+    </div>
+    <h4 class="main-title">TRANSACTION RECEIPT</h4>
+    <div class="main-table">
+      <div class="row">
+        <div class="col-4">
+          <h5>Beneficiery Name: </h5>
+          <input type="text" class="form-control be-name" placeholder="Enter Name">
+        </div>
+        <div class="col-8">
+          <h5>Agent Mobile Number:</h5>
+          <p>8967859713 ; 8927485537</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <h5>Sender Mobile Number:</h5>
+          <input type="number" class="form-control" placeholder="number">
+        </div>
+        <div class="col-4">
+          <h5>Agent Shop Name: </h5>
+          <p>NarayanShanti Enterprise</p>
+        </div>
+        <div class="col-4">
+          <h5>Sender Name:</h5>
+          <input type="text" class="form-control" placeholder="Sender Name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <h5>Account Number: </h5>
+          <input type="text" class="form-control account-numb" placeholder="A/C No.">
+        </div>
+        <div class="col-4">
+          <h5>Type:</h5>
+          <select class="form-control">
+            <option value="IMPS">IMPS</option>
+            <option value="NEFT">NEFT</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <h5>IFCS Code:</h5>
+          <input type="text" class="form-control ifsc-code" placeholder="Enter IFCS code">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <h5>Bank Name:</h5>
+          <select class="form-control">
+            <option value="null">Choose Bank ...</option>
+            
+            <optgroup label="Public Sector Banks">
+              <option value="Bank of Baroda">Bank of Baroda</option>
+              <option value="Bank of India">Bank of India</option>
+              <option value="Bank of Maharashtra">Bank of Maharashtra</option>
+              <option value="Canara Bank">Canara Bank</option>
+              <option value="Central Bank of India">Central Bank of India</option>
+              <option value="Indian Bank">Indian Bank</option>
+              <option value="Indian Overseas Bank">Indian Overseas Bank</option>
+              <option value="Punjab and Sind Bank">Punjab and Sind Bank</option>
+              <option value="Punjab National Bank">Punjab National Bank</option>
+              <option value="State Bank of India">State Bank of India</option>
+              <option value="UCO Bank">UCO Bank</option>
+              <option value="Union Bank of India">Union Bank of India</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="col-4 justify-content-between">
+          <h5>Date:</h5>
+          <!-- dynamically set -->
+          <div class="date-time-div">
+            <input type="number" id="dateDD" class="form-control" placeholder="DD">
+            <p>-</p>
+            <input type="number" id="dateMM" class="form-control" placeholder="MM">
+            <p>-</p>
+            <input type="number" id="dateYYYY" class="form-control" placeholder="YYYY">
+          </div>
+        </div>
+        <div class="col-4 justify-content-between">
+          <h5>Time:</h5>
+          <div class="date-time-div">
+            <input type="number" id="dateHH" class="form-control" placeholder="HH">
+            <p>:</p>
+            <input type="number" id="dateMIN" class="form-control" placeholder="MIN">
+            <p>:</p>
+            <input type="number" id="dateSEC" class="form-control" placeholder="SEC">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5>Transaction Id:</h5>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5>Amount:</h5>
+          <input type="text" id="amount" class="form-control amount-value" placeholder="Enter Amount" onclick="this.select();" onblur="convertAmountToWords(this.value)">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h5>Status:</h5>
+          <select class="status-select">
+            <option value="null"></option>
+            <option value="SUCCESS">SUCCESS</option>
+            <option value="PENDING">PENDING</option>
+            <option value="AWAITED">AWAITED</option>
+            <option value="DENIED">DENIED</option>
+            <option value="REJECTED">REJECTED</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="generated-text">
+    ** THIS IS COMPUTER GENERATED RECEIPT **
+    <!-- <small class="print" onclick="window.print()">print</small> -->
+  </p>
+</div>

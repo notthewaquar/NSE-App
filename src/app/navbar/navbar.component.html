@@ -11,14 +11,16 @@
     <mat-nav-list>
       <a 
         mat-list-item
-        >
+        routerLinkActive="active"
+        routerLink="/add-pay-form">
         New Payment &nbsp;&nbsp;
         <i class="fas fa-money-check"></i>
       </a>
       <mat-divider></mat-divider>
       <a 
         mat-list-item
-        >
+        routerLinkActive="active" 
+        routerLink="/account">
         Login/Logout &nbsp;&nbsp;
         <i class="fas fa-user-circle"></i>
       </a>
@@ -35,7 +37,7 @@
         (click)="sidenav.toggle()">
         <i class="fa fa-bars"></i>
       </button>
-      <span routerLink="/home">NS Enterprise</span>
+      <span routerLink="">NS Enterprise</span>
       <div style="margin-left: auto;" class="nav-menu-link">
         <a 
           mat-raised-button
@@ -47,7 +49,7 @@
         <a 
           mat-raised-button
           routerLinkActive="active" 
-          routerLink="/pay-success-invoice">
+          routerLink="/account">
           <!-- My Accounts -->
           <i class="fas fa-user-circle"></i>
         </a>
