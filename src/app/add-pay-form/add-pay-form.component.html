@@ -1,8 +1,15 @@
-<form>
+<form
+  [formGroup]="paymentForm"
+  (ngSubmit)="onSubmit()">
 <mat-card>
   <mat-form-field class="w-100" appearance="fill">
     <mat-label>Beneficiery Name:</mat-label>
-    <input matInput>
+    <input 
+      matInput
+      formControlName="benefName">
+    <mat-error *ngIf="paymentForm.get('benefName').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
   <!-- <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Agent Mobile Number:</mat-label>
@@ -10,7 +17,13 @@
   </mat-form-field> -->
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Sender Mobile Number:</mat-label>
-    <input matInput>
+    <input 
+      matInput
+      formControlName="senderMobNo">
+    <mat-error 
+      *ngIf="paymentForm.get('senderMobNo').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
   <!-- <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Agent Shop Name: </mat-label>
@@ -18,24 +31,51 @@
   </mat-form-field> -->
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Sender Name:</mat-label>
-    <input matInput>
+    <input
+      matInput
+      formControlName="senderName">
+    <mat-error 
+      *ngIf="paymentForm.get('senderName').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
 </mat-card>
 <mat-card>
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Account Number:</mat-label>
-    <input matInput>
+    <input 
+      matInput
+      formControlName="accountNumber">
+    <mat-error 
+      *ngIf="paymentForm.get('accountNumber').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Type:</mat-label>
-    <mat-select>
-      <mat-option value="IMPS">IMPS</mat-option>
-      <mat-option value="NEFT">NEFT</mat-option>
+    <mat-select
+      formControlName="payType">
+      <mat-option
+      *ngFor="let eachPayTypeOption of payTypeOption"
+      [value]="eachPayTypeOption"
+      >{{eachPayTypeOption}}</mat-option>
+      <!-- <mat-option value="IMPS">IMPS</mat-option>
+      <mat-option value="NEFT">NEFT</mat-option> -->
     </mat-select>
+    <mat-error 
+      *ngIf="paymentForm.get('payType').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>IFCS Code:</mat-label>
-    <input matInput>
+    <input 
+      matInput
+      formControlName="ifscCode">
+    <mat-error 
+      *ngIf="paymentForm.get('ifscCode').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
   <!-- <mat-form-field appearance="fill">
     <mat-label>Bank Name:</mat-label>
@@ -47,11 +87,15 @@
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Bank Name:</mat-label>
     <input type="text"
-            placeholder="Pick one"
-            aria-label="Number"
-            matInput
-            [formControl]="myBankNameControl"
-            [matAutocomplete]="auto">
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      [matAutocomplete]="auto"
+      formControlName="bankName">
+    <!-- <mat-error 
+      *ngIf="paymentForm.get('bankName').hasError('required')">
+      This field is required
+    </mat-error> -->
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let bankName of filteredBankNames | async" [value]="bankName">
         {{bankName}}
@@ -60,10 +104,16 @@
   </mat-form-field>
   <mat-form-field class="w-100" appearance="fill">
     <mat-label>Amount:</mat-label>
-    <input matInput>
+    <input
+      matInput
+      formControlName="payAmount">
+    <mat-error 
+      *ngIf="paymentForm.get('payAmount').hasError('required')">
+      This field is required
+    </mat-error>
   </mat-form-field>
 </mat-card>
-<mat-card>
+<!-- <mat-card>
   <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Transaction Id:</mat-label>
     <input matInput>
@@ -79,12 +129,13 @@
       <mat-option value="REJECTED">REJECTED</mat-option>
     </mat-select>
   </mat-form-field>
-</mat-card>
+</mat-card> -->
 <button 
   mat-raised-button 
   type="submit"
   class="btn-submit"
-  color="primary">
+  color="primary"
+  [disabled]="!paymentForm.valid">
   Start Payment
   <i class="fas fa-paper-plane"></i>
   </button>
@@ -99,3 +150,8 @@
     Test Invoice
   </button>
 </form>
+<div
+  class="mat-center"
+  *ngIf="paymentInitiated">
+  <mat-spinner></mat-spinner>
+</div>

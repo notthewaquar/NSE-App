@@ -9,12 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // custom material module
 import { CustomMaterialModule } from './core/material.module';
-
+// services
+import { PayFormService } from './services/payform.service';
+// component
 import { NavbarComponent } from './navbar/navbar.component';
 import { PaySuccessInvoiceComponent } from './pay-success-invoice/pay-success-invoice.component';
 import { LoginComponent } from './login/login.component';
 import { AddPayFormComponent } from './add-pay-form/add-pay-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { PaymentConfirmModalComponent } from './my-modal/payment-confirm/payment-confirm-modal/payment-confirm-modal.component';
+
 // routing
 const appRoutes: Routes = [
   {path: '', component: NavbarComponent, children: [
@@ -31,7 +35,8 @@ const appRoutes: Routes = [
     PaySuccessInvoiceComponent,
     LoginComponent,
     AddPayFormComponent,
-    HomePageComponent
+    HomePageComponent,
+    PaymentConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ const appRoutes: Routes = [
     CustomMaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    PayFormService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

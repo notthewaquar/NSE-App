@@ -1,8 +1,20 @@
+.logo-div {
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
 form {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 70%;
+}
+@media only screen and (max-width: 500px) {
+  form {
+    width: 90%;
+  }
 }
 .w-100 {
   width: 100%;
@@ -21,4 +33,10 @@ h4 {
 }
 mat-card {
   /* background: #f4f4f4; */
+  background-image: linear-gradient(45deg, #00b09f, #009688);
+}
+h4,
+input,
+mat-label {
+  color: #fff;
 }
