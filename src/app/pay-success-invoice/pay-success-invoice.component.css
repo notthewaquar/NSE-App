@@ -49,12 +49,6 @@
   width: 1026px;
 }
 
-.date-time-div {
-  display: flex;
-  width: 121px;
-  justify-content: space-between;
-}
-
 .date-time-div span {
   text-align: center;
   padding: 0;
@@ -69,9 +63,6 @@
 }
 
 .date-time-div {
-  display: flex;
-  width: 100px;
-  justify-content: space-between;
 }
 .main-table h5 {
   margin: 0;
@@ -121,4 +112,34 @@ select::-ms-expand {
 .print {
   float: right;
   cursor: pointer;
+}
+.goback {
+  float: left;
+  cursor: pointer;
+  color: #f4f4f4;
+}
+.goback:hover {
+  color: #333;
+}
+
+.error-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* padding: 10px;
+  background: wheat;
+  border: 1px solid #f44336;
+  border-radius: 5px;
+  box-shadow: 0 0 10px -3px #000;
+  color: #f44336; */
+}
+.error-box h4 {
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+.error-box small {
+  margin: 10px 0 30px;
+  display: block;
+  font-size: 14px;
 }

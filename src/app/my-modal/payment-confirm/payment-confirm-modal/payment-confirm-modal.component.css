@@ -1,0 +1,24 @@
+.main-div {
+}
+.main-div > div {
+  margin-bottom: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.main-div p {
+  display: inline-block;
+  padding-left: 10px;
+  margin: 0;
+}
+.mat-dialog-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-divider {
+  margin: 12px 0;
+}
+.mat-dialog-title {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 22px;
+}

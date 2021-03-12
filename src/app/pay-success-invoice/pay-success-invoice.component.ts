@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PayFormService } from '../services/payform.service';
 
 @Component({
@@ -8,14 +9,27 @@ import { PayFormService } from '../services/payform.service';
 })
 export class PaySuccessInvoiceComponent implements OnInit {
   payFormData: any;
+  paymentDone: boolean = true;
 
   constructor(
-    private payFormService: PayFormService
+    private payFormService: PayFormService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.payFormData = this.payFormService.payFormData;
-    console.log(this.payFormData);    
-  }
+    // this.paymentDone = this.payFormService.paymentDone;
+    console.log(this.paymentDone);
 
+    this.payFormData = this.payFormService.payFormData;
+    console.log(this.payFormData);
+    if (
+      this.payFormData === undefined
+    ) {
+      this.paymentDone = false;
+    }
+  }
+  gotoPayForm() {
+    this.router.navigate(['/add-pay-form']);
+  }
+  
 }

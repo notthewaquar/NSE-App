@@ -1,4 +1,6 @@
-<div class="pay-invoice">
+<div
+  class="pay-invoice"
+  *ngIf="paymentDone">
   <div class="container-fluid">
     <div class="logo-div">
       <img src="assets/img/logo.png" alt="" class="logo" width="80">
@@ -30,7 +32,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4 jcb">
+        <div class="col-4">
           <h5>Account Number: </h5>
           <p>{{payFormData.accountNumber}}</p>
         </div>
@@ -38,7 +40,7 @@
           <h5>Type:</h5>
           <p>{{payFormData.payType}}</p>
         </div>
-        <div class="col-4 jcb">
+        <div class="col-4">
           <h5>IFCS Code:</h5>
           <p>{{payFormData.ifscCode}}</p>
         </div>
@@ -90,5 +92,22 @@
   <p class="generated-text">
     ** THIS IS COMPUTER GENERATED RECEIPT **
     <small class="print" onclick="window.print()">print</small>
+    <small class="goback" onclick="gotoPayForm()">go back</small>
   </p>
+</div>
+<div
+  class="error-box"
+  *ngIf="!paymentDone">
+  <mat-card>
+    <h4>Looks like there is no Payment Information</h4>
+    <p>Please go to Payment Page to make payment</p>
+    <mat-divider></mat-divider>
+    <br>
+    <button
+      type="button"
+      mat-raised-button
+      (click)="gotoPayForm()"
+      color="primary">Make New Payment</button>
+  </mat-card>
+
 </div>

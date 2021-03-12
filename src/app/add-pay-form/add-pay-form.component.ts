@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { PayFormService } from '../services/payform.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { PaymentConfirmModalComponent } from '../my-modal/payment-confirm/payment-confirm-modal/payment-confirm-modal.component';
 
 @Component({
   selector: 'app-add-pay-form',
@@ -12,8 +14,8 @@ import { PayFormService } from '../services/payform.service';
   styleUrls: ['./add-pay-form.component.css']
 })
 export class AddPayFormComponent implements OnInit {
-  paymentInitiated: boolean = false;
-  paymentForm: FormGroup
+  paymentInitiated: boolean;
+  paymentForm: FormGroup;
   bankName: string[] = [
     'Bank of Baroda',
     'Bank of India',
@@ -35,10 +37,12 @@ export class AddPayFormComponent implements OnInit {
   
   constructor(
     private payFormService: PayFormService,
+    public dialog: MatDialog,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.paymentInitiated = this.payFormService.paymentInitiated;
     // payment form
     this.paymentForm = new FormGroup({
       'benefName': new FormControl(null, Validators.required),
@@ -64,7 +68,8 @@ export class AddPayFormComponent implements OnInit {
   }
   // submit payment form
   onSubmit() {
-    this.paymentInitiated = true;
+    // this.paymentInitiated = true;
+    // this.payFormService.paymentInitiated = true;
     console.log(this.paymentForm.value);
 
     this.payFormService.payFormData = {
@@ -82,9 +87,10 @@ export class AddPayFormComponent implements OnInit {
       transactionId: this.getTransId(),
       status: 'SUCCESS'
     };
-    setInterval(function() {
-      // this.gotoPayInfo();
-      this.paymentInitiated = false;
+    this.openDialog();
+    setTimeout(function() {
+      // this.paymentInitiated = false;
+      // this.dialog.open(PaymentConfirmModalComponent, {});
     }, 5000);
   }
   gotoPayInfo() {
@@ -175,13 +181,26 @@ export class AddPayFormComponent implements OnInit {
     return str
   }
   getAmountInWords() {
-    let amountInWords = this.price_in_words(this.paymentForm.value.payAmount);
-    return `${this.paymentForm.value.payAmount} Rs${amountInWords}only`
+    let amountInNumber = this.paymentForm.value.payAmount;
+    amountInNumber = amountInNumber.replace(/\,/g,"");
+
+    console.log(amountInNumber);
+    let amountInWords = this.price_in_words(amountInNumber);
+    
+    return `${this.paymentForm.value.payAmount} Rs${amountInWords} only`
   }
   // transaction ID
   getTransId() {
     let todayDate = this.getTodayDate().split("-");
     let todayTime = this.getTodayTime().split(":");
     return `${todayDate[2]}${todayDate[1]}${todayDate[0]}${todayTime[2]}${todayTime[1]}${todayTime[0]}`
+  }
+  // modal
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PaymentConfirmModalComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
