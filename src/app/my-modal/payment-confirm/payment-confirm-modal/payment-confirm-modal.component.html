@@ -1,6 +1,6 @@
 <div
   class="modal-wrapper"
-  *ngIf="!inPaymentMode">
+  *ngIf="!inPaymentMode && !redirectToInvoice">
   <h1 mat-dialog-title>Are you sure to Process this Transaction ?</h1>
   <div mat-dialog-content>
     <div class="main-div">
@@ -40,3 +40,19 @@
 </div>
 <mat-spinner
 *ngIf="inPaymentMode"></mat-spinner>
+<div
+  class="success-card"
+  *ngIf="redirectToInvoice">
+  <div class='img-fluid'>
+    <img src="assets/img/pay-done.png" alt="" class="logo" width="80">
+  </div>
+  <strong></strong>
+  <p>Payment done successfully </p>
+  <!-- <button
+    type="button"
+    class="close">
+    <span aria-hidden="true">&times;</span>
+  </button> -->
+  <p class="p2">GENERATING RECEIPT IN ({{redirectCountDown}} Sec)</p>
+  <mat-progress-bar mode="determinate" [value]="redirectCount"></mat-progress-bar>
+</div>

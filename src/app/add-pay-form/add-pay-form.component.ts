@@ -14,7 +14,7 @@ import { PaymentConfirmModalComponent } from '../my-modal/payment-confirm/paymen
   styleUrls: ['./add-pay-form.component.css']
 })
 export class AddPayFormComponent implements OnInit {
-  paymentInitiated: boolean;
+  // paymentInitiated: boolean;
   paymentForm: FormGroup;
   bankName: string[] = [
     'Bank of Baroda',
@@ -42,7 +42,7 @@ export class AddPayFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.paymentInitiated = this.payFormService.paymentInitiated;
+    // this.paymentInitiated = this.payFormService.paymentInitiated;
     // payment form
     this.paymentForm = new FormGroup({
       'benefName': new FormControl(null, Validators.required),
@@ -186,8 +186,16 @@ export class AddPayFormComponent implements OnInit {
 
     console.log(amountInNumber);
     let amountInWords = this.price_in_words(amountInNumber);
+
+    var x: any = amountInNumber;
+    x=x.toString();
+    var lastThree = x.substring(x.length-3);
+    var otherNumbers = x.substring(0,x.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var resAmountInNumber = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
     
-    return `${this.paymentForm.value.payAmount} Rs${amountInWords} only`
+    return `${resAmountInNumber} (Rs${amountInWords} only)`;
   }
   // transaction ID
   getTransId() {
@@ -197,7 +205,7 @@ export class AddPayFormComponent implements OnInit {
   }
   // modal
   openDialog(): void {
-    const dialogRef = this.dialog.open(PaymentConfirmModalComponent, {});
+    const dialogRef = this.dialog.open(PaymentConfirmModalComponent, {disableClose: true});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

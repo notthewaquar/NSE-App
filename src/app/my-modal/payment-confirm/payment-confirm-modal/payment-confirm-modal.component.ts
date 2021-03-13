@@ -9,9 +9,13 @@ import { PayFormService } from 'src/app/services/payform.service';
   styleUrls: ['./payment-confirm-modal.component.css']
 })
 export class PaymentConfirmModalComponent implements OnInit {
-  paymentInitiated: boolean;
+  // paymentInitiated: boolean;
   inPaymentMode: boolean = false;
   payFormData: any;
+  redirectToInvoice: boolean = false;
+  redirectCount: number = 0;
+  redirectCountDown: number = 5;
+  
   constructor(
     private payFormService: PayFormService,
     private router: Router,
@@ -30,10 +34,32 @@ export class PaymentConfirmModalComponent implements OnInit {
     this.inPaymentMode = true;
     setTimeout(() => {
       this.payFormService.paymentDone = true;
-      this.onNoClick();
       this.inPaymentMode = false;
-      this.router.navigate(['/pay-success-invoice']);
+      this.redirectToInvoice = true;
+      this.startRedirectCount();
+      this.startRedirectCountDown();
     }, 5000);
-    // this.router.navigate(['/pay-success-invoice']);
+    setTimeout(() => {
+      this.onNoClick();
+      this.redirectToInvoice = false;
+      this.router.navigate(['/pay-success-invoice']);      
+    }, 10000);
   }
+  startRedirectCount() {
+    var refreshIntervalId = setInterval(() => {
+      this.redirectCount += 5;
+      if (this.redirectCount >= 100) {
+        clearInterval(refreshIntervalId);
+      }
+    }, 200);    
+  }
+  startRedirectCountDown() {
+    var refreshIntervalId = setInterval(() => {
+      this.redirectCountDown -= 1;
+      if (this.redirectCountDown <= 0) {
+        clearInterval(refreshIntervalId);
+      }
+    }, 800);
+  }
+
 }
