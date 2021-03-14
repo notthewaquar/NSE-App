@@ -253,7 +253,8 @@ input:checked + .slide-container .nav label {
     height: 300px;
   }
   .carousel-controls {
-    line-height: 300;
+    font-size: 50px;
+    line-height: 300px;
   }
   .carousel-controls label {
     padding: 0 10px;
@@ -360,9 +361,9 @@ input:checked + .slide-container .nav label {
 }
 
 .we-offer-area.text-center .item {
-  background: #ffffff none repeat scroll 0 0;
+  /* background: #ffffff none repeat scroll 0 0; */
   border: medium none;
-  padding: 30px 40px;
+  /* padding: 30px 40px; */
   margin: 0 10px;
 }
 
@@ -407,11 +408,6 @@ input:checked + .slide-container .nav label {
 
 .we-offer-area.item-border-less .item {
   border: medium none;
-}
-
-.equal-height {
-  margin-bottom: 50px;
-  height: 320px;
 }
 
 .we-offer-area.item-border-less .item .number {
@@ -532,22 +528,121 @@ input:checked + .slide-container .nav label {
   margin-left: -10px;
   margin-right: -10px;
 }
+
+.equal-height{
+  margin-bottom: 20px;
+}
+.equal-height > .item{
+  /* height: 320px; */
+}
+
 @media only screen and (max-width: 770px) {
-  .equal-height {
-    height: 350px;
-    margin-bottom: 30px;
+  .equal-height > .item{
+    /* height: 350px; */
+    /* margin-bottom: 30px; */
   }
 }
 @media only screen and (max-width: 500px) {
   .we-offer-area.text-center .item {
     padding: 50px 40px;
   }
-  .equal-height {
-    height: 280px;
-    margin-bottom: 70px;
+  .equal-height > .item{
+    /* height: 280px; */
+    /* margin-bottom: 70px; */
   }
 }
 /* our services */
+/* about us */
+
+.aboutus-main{
+  margin-top: 20px;
+  /* display: block;
+  width: 80%;
+  min-height: 60vh;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+  padding: 150px 10% 50px 10%; */
+  /* background: #34495e; */
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.aboutus-main > h2{
+  display: block;
+  color:#3f51b5;
+  font-size: 32px;
+  line-height: 31px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin: 0 auto 30px;
+}
+
+.aboutus-main > span {
+  display: block;
+  color: #222;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.75;
+  margin: 20px auto 10px;
+}
+
+.aboutus-main > p{
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.75;
+  margin: 0 auto 10px;
+  color: #333;
+}
+
+.aboutus-main > img{
+  display: block;
+  width: 50%;
+  height: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 20px auto;
+  box-shadow: 0 0 10px -5px #000;
+  border: 2px solid #ffff;
+}
+
+.aboutus-main > .mission{
+  color: #fff;
+  display: blcok;
+  width: 60%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #3f51b5;
+  margin-left: 20%;
+  padding: 5px 10px; 
+
+}
+
+.aboutus-main > .mission > span{
+  display: block;
+  margin: 0 auto 10px;
+  font-size: x-large;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.75;
+  /* color: #222; */
+}
+.aboutus-main > .mission > p{
+  display: block;
+  /* color: #333; */
+  margin: 0 auto 10px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+@media only screen and (max-width: 500px) {
+  .aboutus-main > img {
+    width: 100%;
+  }
+}
+/* about us */
 /* footer */
 footer ul {
   margin: 0px;
@@ -572,7 +667,9 @@ footer ul {
   margin-top: 8px;
 }
 .single-cta {
-  padding: 20px 0;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px 0 0;
 }
 .cta-text {
   padding-left: 15px;
@@ -583,10 +680,26 @@ footer ul {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
+  margin-bottom: 10px;
 }
 .cta-text span {
   color: #757575;
   font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+.cta-text b{
+  color: #ddd;
+  font-weight: 500;
+  display: block;
+}
+
+.cta-text span a{
+  color: #757575;
+  cursor: pointer;
+}
+.cta-text span a:hover{
+color: #ddd;
 }
 .footer-content {
   position: relative;

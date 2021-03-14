@@ -13,7 +13,7 @@ export class PaymentConfirmModalComponent implements OnInit {
   inPaymentMode: boolean = false;
   payFormData: any;
   redirectToInvoice: boolean = false;
-  redirectCount: number = 0;
+  // redirectCount: number = 0;
   redirectCountDown: number = 5;
   
   constructor(
@@ -36,7 +36,7 @@ export class PaymentConfirmModalComponent implements OnInit {
       this.payFormService.paymentDone = true;
       this.inPaymentMode = false;
       this.redirectToInvoice = true;
-      this.startRedirectCount();
+      // this.startRedirectCount();
       this.startRedirectCountDown();
     }, 5000);
     setTimeout(() => {
@@ -45,14 +45,14 @@ export class PaymentConfirmModalComponent implements OnInit {
       this.router.navigate(['/pay-success-invoice']);      
     }, 10000);
   }
-  startRedirectCount() {
-    var refreshIntervalId = setInterval(() => {
-      this.redirectCount += 5;
-      if (this.redirectCount >= 100) {
-        clearInterval(refreshIntervalId);
-      }
-    }, 200);    
-  }
+  // startRedirectCount() {
+  //   var refreshIntervalId = setInterval(() => {
+  //     this.redirectCount += 5;
+  //     if (this.redirectCount >= 100) {
+  //       clearInterval(refreshIntervalId);
+  //     }
+  //   }, 200);    
+  // }
   startRedirectCountDown() {
     var refreshIntervalId = setInterval(() => {
       this.redirectCountDown -= 1;
