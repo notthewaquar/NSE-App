@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // angular modules
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// http client
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // custom material module
 import { CustomMaterialModule } from './core/material.module';
 // services
@@ -18,15 +20,33 @@ import { LoginComponent } from './login/login.component';
 import { AddPayFormComponent } from './add-pay-form/add-pay-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PaymentConfirmModalComponent } from './my-modal/payment-confirm/payment-confirm-modal/payment-confirm-modal.component';
+import { AuthGuard } from './login/auth.guard';
+// dashboard
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManageComponent } from './dashboard/manage/manage.component';
+import { DashMenuComponent } from './dashboard/dash-menu/dash-menu.component';
+// import { AuthInterceptorSerivce } from './login/auth-interceptor.service';
 
 // routing
 const appRoutes: Routes = [
-  {path: '', component: NavbarComponent, children: [
-    {path: '', component: HomePageComponent},
-    {path: 'add-pay-form', component: AddPayFormComponent}
-  ]},
+  {
+    path: '', component: NavbarComponent,
+    children: [
+      {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
+      {path: 'add-pay-form', component: AddPayFormComponent, canActivate: [AuthGuard]},
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        children: [
+          {path: '', component: DashMenuComponent},
+          {path: 'manage', component: ManageComponent}
+        ]
+      },
+    ]
+  },
   {path: 'account', component: LoginComponent},
-  {path: 'pay-success-invoice', component: PaySuccessInvoiceComponent},
+  {path: 'pay-success-invoice', component: PaySuccessInvoiceComponent, canActivate: [AuthGuard]}
 ]; 
 @NgModule({
   declarations: [
@@ -36,11 +56,13 @@ const appRoutes: Routes = [
     LoginComponent,
     AddPayFormComponent,
     HomePageComponent,
-    PaymentConfirmModalComponent
+    PaymentConfirmModalComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -49,6 +71,12 @@ const appRoutes: Routes = [
   ],
   providers: [
     PayFormService
+    // ,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorSerivce,
+    //   multi: true
+    // }    
   ],
   bootstrap: [AppComponent]
 })

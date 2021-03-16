@@ -10,19 +10,42 @@
     </mat-toolbar>
     <mat-nav-list>
       <a 
+        *ngIf="isAuthenticated"
         mat-list-item
         routerLinkActive="active"
         routerLink="/add-pay-form">
-        New Payment &nbsp;&nbsp;
         <i class="fas fa-money-check"></i>
+        &nbsp;&nbsp;
+        New Payment
       </a>
       <mat-divider></mat-divider>
       <a 
+        *ngIf="!isAuthenticated"
         mat-list-item
         routerLinkActive="active" 
         routerLink="/account">
-        Login/Logout &nbsp;&nbsp;
         <i class="fas fa-user-circle"></i>
+        &nbsp;&nbsp;
+        Accounts
+      </a>
+      <a 
+        *ngIf="isAuthenticated"
+        mat-list-item
+        routerLinkActive="active" 
+        routerLink="/account">
+        <i class="fas fa-user-circle"></i>
+        &nbsp;&nbsp;
+        Log Out
+      </a>
+      <mat-divider></mat-divider>
+      <a 
+        *ngIf="isAuthenticated"
+        mat-list-item
+        routerLinkActive="active" 
+        routerLink="/dashboard">
+        <i class="fas fa-cogs"></i>
+        &nbsp;&nbsp;
+        Dashboard
       </a>
         <!-- routerLinkActive="active" 
         routerLink="/student" -->
@@ -44,6 +67,7 @@
       </span>
       <div style="margin-left: auto;" class="nav-menu-link">
         <a 
+          *ngIf="isAuthenticated"
           mat-raised-button
           routerLinkActive="active"
           routerLink="/add-pay-form">
@@ -51,10 +75,19 @@
           <i class="fas fa-money-check"></i>
         </a>
         <a 
+          *ngIf="!isAuthenticated"
           mat-raised-button
           routerLinkActive="active" 
           routerLink="/account">
           <!-- My Accounts -->
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a 
+          *ngIf="isAuthenticated"
+          mat-raised-button
+          routerLinkActive="active" 
+          routerLink="/account">
+          <!-- Log Out -->
           <i class="fas fa-user-circle"></i>
         </a>
       </div>

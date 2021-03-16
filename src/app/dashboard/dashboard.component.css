@@ -1,0 +1,15 @@
+.main {
+  margin: 10px;
+}
+.main mat-card {
+  margin-bottom: 10px;
+}
+.main mat-card:last-child {
+  margin-bottom: 0;
+}
+table {
+  width: 100%;
+}
+mat-form-field {
+  width: 100%;
+}

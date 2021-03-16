@@ -1,25 +1,54 @@
+<div *ngIf="!isLoading">
+
 <div class="logo-div">
   <img src="assets/img/logo.png" alt="" class="logo" width="80">
 </div>  
-<form>
+<form
+  #authForm="ngForm"
+  (ngSubmit)="onSubmit(authForm)">
   <mat-card>
     <h4>
-      USER LOGIN
+      USER 
+      {{ isLoginMode ? 'LOGIN' : 'SIGN UP' }}
     </h4>
     <mat-form-field class="w-100">
       <mat-label>User Name</mat-label>
-      <input matInput>
+      <input
+        matInput
+        type="email"
+        ngModel
+        name="email"
+        required
+        email>
     </mat-form-field>
     <mat-form-field class="w-100">
       <mat-label>Password</mat-label>
-      <input matInput>
+      <input
+        matInput
+        type="password"
+        ngModel
+        name="password"
+        required
+        minlength="6">
     </mat-form-field>
     <button 
       mat-raised-button 
-      type="button"
+      type="submit"
       class="btn-submit"
-      (click)="gotoHomePage()">
-      Login
+      [disabled]="!authForm.valid">
+      {{ isLoginMode ? 'Login' : 'Sign up' }}
+      </button>
+    <button 
+      mat-raised-button 
+      type="button"
+      class="switch-btn"
+      (click)="onSwitchMode()">
+        Switch to 
+        {{ !isLoginMode ? 'Login' : 'Sign up' }} Page
       </button>
   </mat-card>
 </form>
+</div>
+<div class="spinner-div">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>

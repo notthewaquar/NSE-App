@@ -40,3 +40,19 @@ input,
 mat-label {
   color: #fff;
 }
+.switch-btn {
+  font-size: 12px;
+  padding: 0 5px;
+  height: auto;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 0;
+}
+
+.spinner-div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
