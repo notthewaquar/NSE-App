@@ -13,7 +13,8 @@
         *ngIf="isAuthenticated"
         mat-list-item
         routerLinkActive="active"
-        routerLink="/add-pay-form">
+        routerLink="/add-pay-form"
+        (click)="sidenav.toggle()">
         <i class="fas fa-money-check"></i>
         &nbsp;&nbsp;
         New Payment
@@ -23,7 +24,8 @@
         *ngIf="!isAuthenticated"
         mat-list-item
         routerLinkActive="active" 
-        routerLink="/account">
+        routerLink="/account"
+        (click)="sidenav.toggle()">
         <i class="fas fa-user-circle"></i>
         &nbsp;&nbsp;
         Accounts
@@ -32,7 +34,9 @@
         *ngIf="isAuthenticated"
         mat-list-item
         routerLinkActive="active" 
-        routerLink="/account">
+        routerLink="/account"
+        (click)="logout()"
+        (click)="sidenav.toggle()">
         <i class="fas fa-user-circle"></i>
         &nbsp;&nbsp;
         Log Out
@@ -42,7 +46,8 @@
         *ngIf="isAuthenticated"
         mat-list-item
         routerLinkActive="active" 
-        routerLink="/dashboard">
+        routerLink="/dashboard"
+        (click)="sidenav.toggle()">
         <i class="fas fa-cogs"></i>
         &nbsp;&nbsp;
         Dashboard

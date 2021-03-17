@@ -34,6 +34,6 @@ export class DashboardComponent implements OnInit {
     this.dataStorageService.fetchBankName();
   }
   managePage() {
-    this.router.navigate(['/manage']);
+    this.router.navigate(['/dashboard/manage-form']);
   }
 }

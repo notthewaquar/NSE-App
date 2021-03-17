@@ -6,6 +6,8 @@ import {
   // Subject,
   throwError 
 } from "rxjs";
+import { Router } from "@angular/router";
+
 import { User } from "../model/user.model";
 
 export interface  AuthResonseData {
@@ -22,8 +24,10 @@ export class AuthService {
   userSub = new BehaviorSubject<User>(null);
   user:any;
   token: string = null;
+  private tokenExpirationTimer: any;
 
   constructor(
+    private router: Router,
     private http: HttpClient
   ) {
 
@@ -59,8 +63,7 @@ export class AuthService {
       }
     ).pipe(catchError(this.errorHandler),
       tap(resData => {
-        this.token = resData.idToken;
-        console.log(this.token);        
+        // console.log(this.token);        
         this.handelAunthenntication(
           resData.email,
           resData.localId,
@@ -70,13 +73,67 @@ export class AuthService {
       })
     );
   }
+
+  autoLogin() {
+    const UserData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem('UserData'));
+    if (!UserData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      UserData.email,
+      UserData.id,
+      UserData._token,
+      new Date(UserData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token) {
+      this.user = loadedUser;
+      this.login(this.user.email,this.user.password);
+      
+      const expirationDuration = new Date(UserData._tokenExpirationDate).getTime() - new Date().getTime();
+
+      this.autoLogout(expirationDuration);
+    }
+  }
+
+  logout(accPage: boolean) {
+    this.user = null;
+    if (accPage) {
+      this.router.navigate(['/account']);
+      localStorage.removeItem('UserData');
+    }
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout(false);
+      console.log('Auto login called');
+      console.log(expirationDuration);
+      this.autoLogin();
+    // }, 5000);
+    }, expirationDuration);
+  }
   private handelAunthenntication(
     email: string,
     userId: string,
     token: string,
     expiresIn: number
   ) {
-    const expirationDate = new Date( new Date().getTime() + expiresIn * 1000);
+    this.token = token;
+
+    let expirationDate = new Date( new Date().getTime() + expiresIn * 1000);
+    console.log(expirationDate);
+    // expirationDate = expirationDate.toLocaleString('en-US', { timeZone: 'Asia/Calcutta' })
+
     const user = new User(
       email,
       userId,
@@ -84,7 +141,10 @@ export class AuthService {
       expirationDate
     );
     // this.userSub.next(user);
+    this.autoLogout(expiresIn * 1000);
     this.user = user;
+
+    localStorage.setItem('UserData', JSON.stringify(user));
   }
 
   private errorHandler(errorRes: HttpErrorResponse) {

@@ -29,7 +29,7 @@ export class DataStorageService {
     return this.http
     .get<bankNameInterface>('https://nse-app-default-rtdb.firebaseio.com/dashboard/bankName.json?auth=' + userToken)
     .subscribe(response => {
-      console.log(response);
+      // console.log(response);
       this.bankName = response;
       // this.bankName: any = response;
       return this.bankName;

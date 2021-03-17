@@ -23,8 +23,9 @@ import { PaymentConfirmModalComponent } from './my-modal/payment-confirm/payment
 import { AuthGuard } from './login/auth.guard';
 // dashboard
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ManageComponent } from './dashboard/manage/manage.component';
+import { ManageComponent } from './dashboard/manage-form/manage-form.component';
 import { DashMenuComponent } from './dashboard/dash-menu/dash-menu.component';
+import { ManagePaymentComponent } from './dashboard/manage-payment/manage-payment.component';
 // import { AuthInterceptorSerivce } from './login/auth-interceptor.service';
 
 // routing
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
           {path: '', component: DashMenuComponent},
-          {path: 'manage', component: ManageComponent}
+          {path: 'manage-form', component: ManageComponent},
+          {path: 'manage-payment', component: ManagePaymentComponent}
         ]
       },
     ]
@@ -57,7 +59,11 @@ const appRoutes: Routes = [
     AddPayFormComponent,
     HomePageComponent,
     PaymentConfirmModalComponent,
-    DashboardComponent
+    // dashboard
+    DashboardComponent,
+    DashMenuComponent,
+    ManageComponent,
+    ManagePaymentComponent
   ],
   imports: [
     BrowserModule,
