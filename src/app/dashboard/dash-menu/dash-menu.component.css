@@ -1,6 +1,15 @@
-h4{
+h4 {
   margin-bottom: 10px;
 }
-mat-card div{
+mat-card div {
   /* margin-top: 10px; */
+}
+@media only screen and (max-width: 500px) {
+  .main-menu button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .main-menu span {
+    display: none;
+  }
 }

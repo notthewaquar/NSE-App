@@ -1,3 +1,5 @@
+<div *ngIf="!isLoading">
+
 <form
   [formGroup]="paymentForm"
   (ngSubmit)="onSubmit()">
@@ -150,8 +152,9 @@
     Test Invoice
   </button> -->
 </form>
-<!-- <div
-  class="mat-center"
-  *ngIf="paymentInitiated">
+</div>
+<div
+  class="my-spinner"
+  *ngIf="isLoading">
   <mat-spinner></mat-spinner>
-</div> -->
+</div>

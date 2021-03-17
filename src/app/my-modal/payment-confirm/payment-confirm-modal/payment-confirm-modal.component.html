@@ -42,9 +42,11 @@
 *ngIf="inPaymentMode"></mat-spinner>
 <div
   class="success-card"
-  *ngIf="redirectToInvoice">
-  <div class='img-fluid'>
-    <img src="assets/img/pay-done.png" alt="" class="logo" width="80">
+  *ngIf="redirectToInvoice"
+  >
+  <div class='img-fluid' style="font-size: 110px;">
+    <!-- <img src="assets/img/pay-done.png" alt="" class="logo" width="80"> -->
+    <i class="far fa-check-circle"></i>
   </div>
   <strong></strong>
   <p>Payment done successfully </p>

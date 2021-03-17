@@ -9,9 +9,7 @@ import { DataStorageService } from '../services/data-storage.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  bankName: string[];
-  fullBankNames = '';
-  isLoading = false;
+
 
   constructor(
     private router: Router,
@@ -19,20 +17,9 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.bankName = this.dataStorageService.bankName;
-    this.fullBankNames = '';
-    for (let i = 0; i < this.bankName.length; i++) {
-      this.fullBankNames += `${this.bankName[i]}\n`;
-    }
+    // this.dataStorageService.fetchBankName();
   }
-  updateBankNames(bankList: string) {
-    var arrayOfLines = bankList.split('\n');
-    
-    this.dataStorageService.storeBankName(arrayOfLines);
-  }
-  fetchBankNames() {
-    this.dataStorageService.fetchBankName();
-  }
+  
   managePage() {
     this.router.navigate(['/dashboard/manage-form']);
   }

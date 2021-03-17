@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { AuthService } from "./auth.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 export type bankNameInterface = string[];
 
@@ -11,28 +12,30 @@ export class DataStorageService {
   bankName = [];
   constructor (
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _snackBar: MatSnackBar
   ) {}
 
   storeBankName(bankNameArr: string[]) {
     let userToken = this.authService.token;
-    this.http.put(
+    return this.http.put(
       'https://nse-app-default-rtdb.firebaseio.com/dashboard/bankName.json?auth=' + userToken,
       bankNameArr
-    ).subscribe(response => {
-      console.log(response);
-    });
-    this.fetchBankName();
+    );
   }
   fetchBankName() {
     let userToken = this.authService.token;
     return this.http
     .get<bankNameInterface>('https://nse-app-default-rtdb.firebaseio.com/dashboard/bankName.json?auth=' + userToken)
-    .subscribe(response => {
-      // console.log(response);
-      this.bankName = response;
-      // this.bankName: any = response;
-      return this.bankName;
+    .pipe(
+      map(responseData => {
+        this.bankName = responseData;
+      })
+    );
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 }

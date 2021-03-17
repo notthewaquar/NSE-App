@@ -52,3 +52,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2d3c8e;
 }
+.my-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
