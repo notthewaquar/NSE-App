@@ -36,6 +36,9 @@ a:active {
 .pb-5 {
   padding-bottom: 15px;
 }
+.col-lg-3 {
+  width: 25%;
+}
 .col-md-4 {
   width: 33.33% !important;
 }
@@ -65,6 +68,9 @@ a:active {
 @media only screen and (max-width: 500px) {
   .col-12 {
     width: 100% !important;
+  }
+  .col-6 {
+    width: 50% !important;
   }
   .d-sm-none {
     display: none;
@@ -529,24 +535,29 @@ input:checked + .slide-container .nav label {
   margin-right: -10px;
 }
 
-.equal-height{
+.equal-height {
   margin-bottom: 20px;
 }
-.equal-height > .item{
+.equal-height > .item {
   /* height: 320px; */
 }
 
 @media only screen and (max-width: 770px) {
-  .equal-height > .item{
+  .equal-height > .item {
     /* height: 350px; */
     /* margin-bottom: 30px; */
   }
 }
 @media only screen and (max-width: 500px) {
   .we-offer-area.text-center .item {
-    padding: 50px 40px;
+    padding: 20px;
   }
-  .equal-height > .item{
+  .we-offer-area.text-center .item svg {
+    height: 40px;
+    width: 40px;
+    margin-bottom: 10px;
+  }
+  .equal-height > .item {
     /* height: 280px; */
     /* margin-bottom: 70px; */
   }
@@ -554,23 +565,15 @@ input:checked + .slide-container .nav label {
 /* our services */
 /* about us */
 
-.aboutus-main{
+/* .aboutus-main {
   margin-top: 20px;
-  /* display: block;
-  width: 80%;
-  min-height: 60vh;
-  vertical-align: middle;
-  text-align: left;
-  position: relative;
-  padding: 150px 10% 50px 10%; */
-  /* background: #34495e; */
   color: rgba(255, 255, 255, 0.7);
   text-align: center;
 }
 
-.aboutus-main > h2{
+.aboutus-main > h2 {
   display: block;
-  color:#3f51b5;
+  color: #3f51b5;
   font-size: 32px;
   line-height: 31px;
   letter-spacing: 1px;
@@ -587,7 +590,7 @@ input:checked + .slide-container .nav label {
   margin: 20px auto 10px;
 }
 
-.aboutus-main > p{
+.aboutus-main > p {
   display: block;
   font-size: 16px;
   font-weight: 500;
@@ -596,7 +599,7 @@ input:checked + .slide-container .nav label {
   color: #333;
 }
 
-.aboutus-main > img{
+.aboutus-main > img {
   display: block;
   width: 50%;
   height: auto;
@@ -607,7 +610,7 @@ input:checked + .slide-container .nav label {
   border: 2px solid #ffff;
 }
 
-.aboutus-main > .mission{
+.aboutus-main > .mission {
   color: #fff;
   display: blcok;
   width: 60%;
@@ -615,22 +618,19 @@ input:checked + .slide-container .nav label {
   border-radius: 10px;
   background-color: #3f51b5;
   margin-left: 20%;
-  padding: 5px 10px; 
-
+  padding: 5px 10px;
 }
 
-.aboutus-main > .mission > span{
+.aboutus-main > .mission > span {
   display: block;
   margin: 0 auto 10px;
   font-size: x-large;
   text-align: center;
   font-weight: 500;
   line-height: 1.75;
-  /* color: #222; */
 }
-.aboutus-main > .mission > p{
+.aboutus-main > .mission > p {
   display: block;
-  /* color: #333; */
   margin: 0 auto 10px;
   text-align: center;
   font-weight: 500;
@@ -642,6 +642,12 @@ input:checked + .slide-container .nav label {
     width: 100%;
   }
 }
+@media only screen and (max-width: 500px) {
+  .aboutus-main > .mission {
+    width: 100%;
+    margin: 0;
+  }
+} */
 /* about us */
 /* footer */
 footer ul {
@@ -688,18 +694,18 @@ footer ul {
   display: block;
   margin-bottom: 10px;
 }
-.cta-text b{
+.cta-text b {
   color: #ddd;
   font-weight: 500;
   display: block;
 }
 
-.cta-text span a{
+.cta-text span a {
   color: #757575;
   cursor: pointer;
 }
-.cta-text span a:hover{
-color: #ddd;
+.cta-text span a:hover {
+  color: #ddd;
 }
 .footer-content {
   position: relative;

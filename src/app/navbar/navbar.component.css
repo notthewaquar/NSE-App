@@ -6,6 +6,11 @@
   right: 0;
   background: #eee;
 }
+.mat-drawer-content {
+  /* width: 100vw;
+  overflow-x: hidden; */
+}
+
 /* navbar desktop list */
 .nav-menu-link a {
   margin-left: 5px;
@@ -38,4 +43,8 @@ mat-nav-list .active {
   line-height: 0;
   font-size: 8px;
   margin-top: 2px;
+}
+.mat-drawer-content {
+  width: 100vw;
+  overflow-x: hidden;
 }

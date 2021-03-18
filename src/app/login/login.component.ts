@@ -14,6 +14,11 @@ import { DataStorageService } from '../services/data-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  allowedUser = [
+    'ashraf@nsentreprise.com',
+    'admin@gmail.com',
+    'gulnaz19angle@gmail.com'
+  ]
   isLoginMode: boolean = true;
   isLoading: boolean = false;
 
@@ -38,6 +43,16 @@ export class LoginComponent implements OnInit {
     }
     // console.log(form.value);
     const email = form.value.email;
+    console.log(email);
+    console.log(this.allowedUser);
+    console.log(this.allowedUser.includes(email));
+    
+    if (
+      !this.allowedUser.includes(email)
+    ) {
+      this.openSnackBar('This is not a registered user', 'okay');
+      return;
+    }
     const password = form.value.password;
     this.isLoading = true;
 

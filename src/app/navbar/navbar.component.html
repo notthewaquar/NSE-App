@@ -37,12 +37,12 @@
         routerLink="/account"
         (click)="logout()"
         (click)="sidenav.toggle()">
-        <i class="fas fa-user-circle"></i>
+        <i class="fas fa-power-off"></i>
         &nbsp;&nbsp;
         Log Out
       </a>
       <mat-divider></mat-divider>
-      <a 
+      <!-- <a 
         *ngIf="isAuthenticated"
         mat-list-item
         routerLinkActive="active" 
@@ -51,7 +51,7 @@
         <i class="fas fa-cogs"></i>
         &nbsp;&nbsp;
         Dashboard
-      </a>
+      </a> -->
         <!-- routerLinkActive="active" 
         routerLink="/student" -->
     </mat-nav-list>
@@ -91,9 +91,10 @@
           *ngIf="isAuthenticated"
           mat-raised-button
           routerLinkActive="active" 
-          routerLink="/account">
+          routerLink="/account"
+          (click)="logout()">
           <!-- Log Out -->
-          <i class="fas fa-user-circle"></i>
+          <i class="fas fa-power-off"></i>
         </a>
       </div>
     </mat-toolbar>
