@@ -11,7 +11,7 @@
 <mat-card *ngIf="!isLoading">
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
   </mat-form-field>
 
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
