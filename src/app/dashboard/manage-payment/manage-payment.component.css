@@ -1,0 +1,44 @@
+mat-table,
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+  box-sizing: border-box;
+}
+.mat-column-filler {
+  padding: 0 8px;
+  font-size: 10px;
+  text-align: center;
+}
+.w-80px {
+  min-width: 80px;
+}
+.w-100px {
+  min-width: 100px;
+}
+.w-120px {
+  min-width: 150px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.col-SUCCESS {
+  color: #3faf4b;
+}
+.col-PENDING {
+  color: #10ac84;
+}
+.col-AWAITED {
+  color: #ff6300;
+}
+.col-DENIED {
+  color: #ec1b30;
+}
+.col-REJECTED {
+  color: #576474;
+}

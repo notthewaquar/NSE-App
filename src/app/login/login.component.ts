@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
     }
     // console.log(form.value);
     const email = form.value.email;
-    console.log(email);
-    console.log(this.allowedUser);
-    console.log(this.allowedUser.includes(email));
+    // console.log(email);
+    // console.log(this.allowedUser);
+    // console.log(this.allowedUser.includes(email));
     
     if (
       !this.allowedUser.includes(email)
@@ -64,13 +64,13 @@ export class LoginComponent implements OnInit {
       // authObs = this.authService.signup(email, password);
     }
     authObs.subscribe(resData => {
-      console.log(resData);
+      // console.log(resData);
       this.isLoading = false;
       // only for logged in
       this.dataStorageService.fetchBankName();
       this.gotoHomePage();
     }, errorMessage => {
-      console.log(errorMessage);
+      // console.log(errorMessage);
       this.openSnackBar(errorMessage, 'Close')
       this.isLoading = false;
     });

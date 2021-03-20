@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { PayModel } from 'src/app/model/payform.model';
+import { DataStorageService } from 'src/app/services/data-storage.service';
 import { PayFormService } from 'src/app/services/payform.service';
 
 @Component({
@@ -11,12 +13,13 @@ import { PayFormService } from 'src/app/services/payform.service';
 export class PaymentConfirmModalComponent implements OnInit {
   // paymentInitiated: boolean;
   inPaymentMode: boolean = false;
-  payFormData: any;
+  payFormData: PayModel;
   redirectToInvoice: boolean = false;
   // redirectCount: number = 0;
   redirectCountDown: number = 5;
   
   constructor(
+    private dataStorageService: DataStorageService,
     private payFormService: PayFormService,
     private router: Router,
     public dialogRef:  MatDialogRef<PaymentConfirmModalComponent>
@@ -24,6 +27,8 @@ export class PaymentConfirmModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.payFormData = this.payFormService.payFormData;
+    console.log(this.payFormData);
+    
   }
 
   onNoClick(): void {
@@ -31,6 +36,10 @@ export class PaymentConfirmModalComponent implements OnInit {
     this.payFormService.paymentDone = false;
   }
   gotoPayInvoice() {
+    this.dataStorageService.storePayData(this.payFormData)
+    .subscribe(() => {
+      this.dataStorageService.openSnackBar('Payment done successfully', 'Okay');
+    });
     this.inPaymentMode = true;
     setTimeout(() => {
       this.payFormService.paymentDone = true;

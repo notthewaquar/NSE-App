@@ -43,6 +43,18 @@ export class AddPayFormComponent implements OnInit {
       'bankName': new FormControl(null, Validators.required),
       'payAmount': new FormControl(null, Validators.required)
     });
+    /*
+    this.paymentForm = new FormGroup({
+      'benefName': new FormControl('null', Validators.required),
+      'senderMobNo': new FormControl('null', Validators.required),
+      'senderName': new FormControl('null', Validators.required),
+      'accountNumber': new FormControl('null', Validators.required),
+      'payType': new FormControl('IMPS', Validators.required),
+      'ifscCode': new FormControl('null', Validators.required),
+      'bankName': new FormControl('Central Bank of India', Validators.required),
+      'payAmount': new FormControl('634565', Validators.required)
+    });
+    */
     // this.fetchBankName();
     this.isLoading = true;
     this.dataStorageService.fetchBankName()
@@ -62,22 +74,10 @@ export class AddPayFormComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.bankName.filter(bankName => bankName.toLowerCase().indexOf(filterValue) === 0);
   }
-  // fetchBankName() {
-  //   this.isLoading = true;
-  //   this.dataStorageService.fetchBankName()
-  //     .subscribe( () => {
-  //       this.isLoading = false;
-  //       this.bankName = this.dataStorageService.bankName;
-  //     }
-  //   );
-  // }
-  // submit payment form
   onSubmit() {
-    // this.paymentInitiated = true;
-    // this.payFormService.paymentInitiated = true;
     console.log(this.paymentForm.value);
 
-    this.payFormService.payFormData = {
+    const submittedPayData = {
       benefName: this.paymentForm.value.benefName,
       senderMobNo: this.paymentForm.value.senderMobNo,
       senderName: this.paymentForm.value.senderName,
@@ -92,10 +92,9 @@ export class AddPayFormComponent implements OnInit {
       transactionId: this.getTransId(),
       status: 'SUCCESS'
     };
+    this.payFormService.addPayData(submittedPayData);
     this.openDialog();
-    setTimeout(function() {
-      // this.paymentInitiated = false;
-      // this.dialog.open(PaymentConfirmModalComponent, {});
+      setTimeout(function() {
     }, 5000);
   }
   gotoPayInfo() {
@@ -120,6 +119,7 @@ export class AddPayFormComponent implements OnInit {
     var minute = today.getMinutes();
     var seconds = today.getSeconds();
     // add a zero in front of numbers<10
+    hour = this.checkTime(hour);
     minute = this.checkTime(minute);
     seconds = this.checkTime(seconds);
     return `${hour}:${minute}:${seconds}`;

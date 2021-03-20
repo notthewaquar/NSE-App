@@ -8,5 +8,87 @@
   &nbsp;&nbsp;
   go back
 </button>
+<mat-card *ngIf="!isLoading">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
 
-<p>manage-payment works!</p>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="index">
+      <mat-header-cell class="w-80px" *matHeaderCellDef> Sl No. </mat-header-cell>
+      <mat-cell class="w-80px" *matCellDef="let index = index"> {{index+1}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="benefName">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Benifeciery Name</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.benefName}} </mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="senderMobNo">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Sender Mobile No.</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.senderMobNo}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="senderName">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Sender Name</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.senderName}} </mat-cell>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="accountNumber">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Account No.</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.accountNumber}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="payType">
+      <mat-header-cell class="w-800px" *matHeaderCellDef>Type</mat-header-cell>
+      <mat-cell class="w-800px" *matCellDef="let dataSource"> {{dataSource.payType}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ifscCode">
+      <mat-header-cell class="w-100px" *matHeaderCellDef>IFSC Code</mat-header-cell>
+      <mat-cell class="w-100px" *matCellDef="let dataSource"> {{dataSource.ifscCode}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bankName">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Bank Name</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.bankName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="payAmount">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Amount</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.payAmount}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="todayDate">
+      <mat-header-cell class="w-100px" *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell class="w-100px" *matCellDef="let dataSource"> {{dataSource.todayDate}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="todayTime">
+      <mat-header-cell class="w-100px" *matHeaderCellDef>Time</mat-header-cell>
+      <mat-cell class="w-100px" *matCellDef="let dataSource"> {{dataSource.todayTime}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="transactionId">
+      <mat-header-cell class="w-120px" *matHeaderCellDef>Transaction ID</mat-header-cell>
+      <mat-cell class="w-120px" *matCellDef="let dataSource"> {{dataSource.transactionId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell class="w-100px" *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell
+        class="w-100px col-{{dataSource.status}}"
+        *matCellDef="let dataSource"> {{dataSource.status}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <!-- <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    ></mat-paginator> -->
+</mat-card>
+<div
+  class="my-spinner"
+  *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
