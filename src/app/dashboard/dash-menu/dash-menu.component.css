@@ -13,3 +13,29 @@ mat-card div {
     display: none;
   }
 }
+.view-card {
+  display: flex;
+  margin: 0 -10px;
+  flex-wrap: wrap;
+}
+.view-card mat-card {
+  width: calc(33.33% - 52px);
+  margin: 10px 10px;
+  display: inline-block;
+}
+.view-card h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.view-card p {
+  font-size: 34px;
+  margin: 10px 0 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .view-card mat-card {
+    width: calc(100% - 52px);
+    margin: 10px 10px 0;
+    display: inline-block;
+  }
+}

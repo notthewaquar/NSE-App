@@ -131,7 +131,7 @@ export class AuthService {
     this.token = token;
 
     let expirationDate = new Date( new Date().getTime() + expiresIn * 1000);
-    console.log(expirationDate);
+    // console.log(expirationDate);
     // expirationDate = expirationDate.toLocaleString('en-US', { timeZone: 'Asia/Calcutta' })
 
     const user = new User(

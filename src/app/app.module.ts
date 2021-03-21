@@ -26,6 +26,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageComponent } from './dashboard/manage-form/manage-form.component';
 import { DashMenuComponent } from './dashboard/dash-menu/dash-menu.component';
 import { ManagePaymentComponent } from './dashboard/manage-payment/manage-payment.component';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 // import { AuthInterceptorSerivce } from './login/auth-interceptor.service';
 
 // routing
@@ -63,7 +67,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     DashMenuComponent,
     ManageComponent,
-    ManagePaymentComponent
+    ManagePaymentComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     PayFormService

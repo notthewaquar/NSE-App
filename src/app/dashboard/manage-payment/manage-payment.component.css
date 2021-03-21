@@ -23,6 +23,15 @@ table {
 .w-120px {
   min-width: 150px;
 }
+.w-300px {
+  min-width: 300px;
+}
+mat-cell.w-400px {
+  font-size: 12px;
+}
+.w-500px {
+  min-width: 500px;
+}
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -41,4 +50,15 @@ table {
 }
 .col-REJECTED {
   color: #576474;
+}
+mat-row:hover {
+  background: #e6e6e6;
+}
+mat-header-cell,
+mat-cell {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+mat-header-row,
+mat-row {
+  border-bottom-width: 0;
 }

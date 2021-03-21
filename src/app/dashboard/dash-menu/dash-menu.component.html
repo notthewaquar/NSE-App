@@ -19,6 +19,26 @@
   </div>
 </mat-card>
 
-<mat-card>
-  
-</mat-card>
+<div class="view-card">
+  <mat-card>
+    <h3>Banks Added</h3>
+    <p *ngIf="!bankLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </p>
+    <p *ngIf="bankLoading">{{bankData.length}}</p>
+  </mat-card>
+  <mat-card>
+    <h3>Payment Done</h3>
+    <p *ngIf="!payLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </p>
+    <p *ngIf="payLoading">{{payData.length}}</p>
+  </mat-card>
+  <mat-card>
+    <h3>Total (₹)</h3>
+    <p *ngIf="!totalLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </p>
+    <p *ngIf="totalLoading">{{totalPaid}}</p>
+  </mat-card>
+</div>

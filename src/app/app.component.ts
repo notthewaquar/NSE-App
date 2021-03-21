@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'nse-app';
-
+  
   constructor(
     private authService: AuthService,
     private router: Router

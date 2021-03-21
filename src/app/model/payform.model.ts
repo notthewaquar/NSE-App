@@ -22,6 +22,7 @@ export class PayModel {
     public todayTime: string,
     public transactionId: string,
     public status: string,
+    public delId?: string,
   ) {
     // this.benefName = benefName;
     // this.senderMobNo = senderMobNo;

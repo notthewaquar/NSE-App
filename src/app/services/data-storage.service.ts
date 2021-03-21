@@ -33,10 +33,17 @@ export class DataStorageService {
       map(responseData => {
         this.payFormData = [];
         for (let k in responseData) {
+          responseData[k].delId = k;
           this.payFormData.push(responseData[k]);
         }
       })
     );
+  }
+  deletePayData(delId: string) {
+    let userToken = this.authService.token;
+    return this.http
+    .delete(`https://nse-app-default-rtdb.firebaseio.com/payment/${delId}.json?auth=${userToken}`);    
+    // .delete('https://nse-app-default-rtdb.firebaseio.com/payment.json?auth=' + userToken)
   }
   // dashboard call backs
   storeBankName(bankNameArr: string[]) {
