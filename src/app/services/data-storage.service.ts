@@ -11,6 +11,7 @@ export type bankNameInterface = string[];
 export class DataStorageService {
   payFormData: PayModel[];
   bankName = [];
+  deletePaymentId: string = null;
 
   constructor (
     private authService: AuthService,
@@ -39,7 +40,8 @@ export class DataStorageService {
       })
     );
   }
-  deletePayData(delId: string) {
+  deletePayData() {
+    let delId = this.deletePaymentId;
     let userToken = this.authService.token;
     return this.http
     .delete(`https://nse-app-default-rtdb.firebaseio.com/payment/${delId}.json?auth=${userToken}`);    

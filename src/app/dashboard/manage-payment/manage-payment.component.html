@@ -10,13 +10,12 @@
 </button>
 <mat-card *ngIf="!isLoading">
   <h5>Payment Entries Database</h5>
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Search entries</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
-  </mat-form-field>
+  </mat-form-field> -->
 
-  <mat-table [dataSource]="dataSource" matSort>
-    <!-- class="mat-elevation-z8" -->
+  <!-- <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="index">
       <mat-header-cell class="w-80px" *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
       <mat-cell class="w-80px" *matCellDef="let index = index"> {{index+1}} </mat-cell>
@@ -75,7 +74,6 @@
         class="w-100px col-{{dataSource.status}}"
         *matCellDef="let dataSource"> {{dataSource.status}} </mat-cell>
     </ng-container>
-    <!-- delete -->
     <ng-container matColumnDef="delete">
       <mat-header-cell class="w-80px" *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
       <mat-cell class="w-80px" *matCellDef="let dataSource">
@@ -92,13 +90,15 @@
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  </mat-table> -->
   <!-- [pageSize]="5" -->
   <!-- <mat-paginator
     #scheduledOrdersPaginator 
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
     ></mat-paginator> -->
+
+  <app-data-table></app-data-table>
 </mat-card>
 <div
   class="my-spinner"

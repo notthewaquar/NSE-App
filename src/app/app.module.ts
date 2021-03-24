@@ -30,6 +30,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { DeletePayDataModalComponent } from './my-modal/delete-pay-data-modal/delete-pay-data-modal.component';
 // import { AuthInterceptorSerivce } from './login/auth-interceptor.service';
 
 // routing
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
     DashMenuComponent,
     ManageComponent,
     ManagePaymentComponent,
-    DataTableComponent
+    DataTableComponent,
+    DeletePayDataModalComponent
   ],
   imports: [
     BrowserModule,

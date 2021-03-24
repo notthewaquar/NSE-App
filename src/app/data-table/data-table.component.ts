@@ -2,7 +2,11 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { DataTableDataSource, DataTableItem } from './data-table-datasource';
+import { PayModel } from '../model/payform.model';
+import { DataStorageService } from '../services/data-storage.service';
+import { DataTableDataSource } from './data-table-datasource';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DeletePayDataModalComponent } from '../my-modal/delete-pay-data-modal/delete-pay-data-modal.component';
 
 @Component({
   selector: 'app-data-table',
@@ -12,19 +16,71 @@ import { DataTableDataSource, DataTableItem } from './data-table-datasource';
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<DataTableItem>;
-  dataSource: DataTableDataSource;
+  @ViewChild(MatTable) table: MatTable<PayModel>;
+  dataSource: DataTableDataSource = new DataTableDataSource();
+  isLoading = false;
+  constructor(
+    public dialog: MatDialog,
+    private dataStorageService: DataStorageService
+  ) {}
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = [
+    'index',
+    'benefName',
+    'senderMobNo',
+    'senderName',
+    'accountNumber',
+    'payType',
+    'ifscCode',
+    'bankName',
+    'payAmountInWords',
+    'todayDate',
+    'todayTime',
+    'transactionId',
+    'status',
+    'delete',
+  ];
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource();
+    this.isLoading = true;
+    this.dataStorageService.fetchPayData()
+      .subscribe(() => {
+        // this.dataSource = new DataTableDataSource();
+        console.log(this.dataStorageService.payFormData);
+        console.log(this.dataSource);
+        this.dataSource.data = this.dataStorageService.payFormData;
+
+        // this.dataSource = new DataTableDataSource();
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.table.dataSource = this.dataSource;
+        this.isLoading = false;
+      });
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.table.dataSource = this.dataSource;
+  }
+  onDeletePayData(delId: string) {
+    this.openDialog();
+    console.log(delId);
+    this.dataStorageService.deletePaymentId = delId;
+    // this.dataStorageService.deletePayData(delId)
+    //   .subscribe(res => {
+    //     // console.log(res);
+    //   });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(
+      DeletePayDataModalComponent,
+      // {disableClose: true}
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

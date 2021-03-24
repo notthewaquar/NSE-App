@@ -1,3 +1,73 @@
 .full-width-table {
   width: 100%;
 }
+.data-table {
+  overflow: auto;
+}
+mat-table,
+table {
+  width: 100%;
+  font-size: 14px;
+}
+
+.mat-header-cell,
+.mat-footer-cell,
+.mat-cell {
+  box-sizing: border-box;
+}
+.mat-column-filler {
+  padding: 0 8px;
+  font-size: 10px;
+  text-align: center;
+}
+.w-60px {
+  min-width: 60px;
+}
+.w-80px {
+  min-width: 80px;
+}
+.w-100px {
+  min-width: 100px;
+}
+.w-120px {
+  min-width: 150px;
+}
+.w-300px {
+  min-width: 300px;
+}
+mat-cell.w-400px {
+  font-size: 12px;
+}
+.w-500px {
+  min-width: 500px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.col-SUCCESS {
+  color: #3faf4b;
+}
+.col-PENDING {
+  color: #10ac84;
+}
+.col-AWAITED {
+  color: #ff6300;
+}
+.col-DENIED {
+  color: #ec1b30;
+}
+.col-REJECTED {
+  color: #576474;
+}
+mat-row:hover {
+  background: #e6e6e6;
+}
+mat-header-cell,
+mat-cell {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+mat-header-row,
+mat-row {
+  border-bottom-width: 0;
+}
