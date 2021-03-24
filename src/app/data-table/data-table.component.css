@@ -4,6 +4,11 @@
 .data-table {
   overflow: auto;
 }
+/* @media only screen and (max-width: 770px) {
+  .data-table {
+    height: 60vh;
+  }
+} */
 mat-table,
 table {
   width: 100%;
@@ -19,6 +24,9 @@ table {
   padding: 0 8px;
   font-size: 10px;
   text-align: center;
+}
+.w-30px {
+  min-width: 30px;
 }
 .w-60px {
   min-width: 60px;

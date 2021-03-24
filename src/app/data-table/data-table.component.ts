@@ -64,6 +64,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     // this.table.dataSource = this.dataSource;
   }
   onDeletePayData(delId: string) {
+    this.dataSource.data.splice(10,1);
+    console.log(this.dataSource.data);
+    // return;
     this.openDialog();
     console.log(delId);
     this.dataStorageService.deletePaymentId = delId;
@@ -83,4 +86,15 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       console.log('The dialog was closed');
     });
   }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
+  // applyFilter(filterValue: string) { 
+  //   filterValue = filterValue.trim(); 
+  //   // Remove whitespace 
+  //   filterValue = filterValue.toLowerCase(); 
+  //   // MatTableDataSource defaults to lowercase matches 
+  //   this.dataSource.filter = filterValue;
+  // }
 }

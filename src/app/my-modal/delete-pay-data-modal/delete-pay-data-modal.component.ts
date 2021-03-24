@@ -30,7 +30,9 @@ export class DeletePayDataModalComponent implements OnInit {
     this.isLoading = true;
     this.dataStorageService.deletePayData()
       .subscribe(res => {
-        this.dataStorageService.openSnackBar('Payment data was successfully deleted', 'okay');
+        this.dataStorageService.openSnackBar(
+          'Payment data was successfully deleted',
+          'okay');
         this.isLoading = false;
         this.onNoClick();
       });

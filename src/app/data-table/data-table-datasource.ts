@@ -101,9 +101,9 @@ export class DataTableDataSource extends DataSource<PayModel> {
       }
     });
   }
-  public getTableData() {
-    return this.data;
-  }
+  // public getTableData() {
+  //   return this.data;
+  // }
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */

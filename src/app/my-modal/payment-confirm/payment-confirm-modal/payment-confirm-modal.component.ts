@@ -28,7 +28,8 @@ export class PaymentConfirmModalComponent implements OnInit {
   ngOnInit(): void {
     this.payFormData = this.payFormService.payFormData;
     console.log(this.payFormData);
-    
+    console.log(111111);
+    // this.playAudio();
   }
 
   onNoClick(): void {
@@ -71,4 +72,10 @@ export class PaymentConfirmModalComponent implements OnInit {
     }, 800);
   }
 
+  // playAudio(){
+  //   let audio = new Audio();
+  //   audio.src = "../../../../assets/audio/win.mp3";
+  //   audio.load();
+  //   audio.play();
+  // }
 }

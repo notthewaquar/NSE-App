@@ -1,13 +1,18 @@
 <!-- <div *ngIf="!isLoading"> -->
 <div class="data-table">
+  <!-- <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field> -->
+
   <table
     mat-table
     matSort
     aria-label="dataSource">
 
     <ng-container matColumnDef="index" sticky>
-      <th class="w-60px" *matHeaderCellDef mat-sort-header> Sl No. </th>
-      <td class="w-60px" *matCellDef="let dataSource; let i = index">
+      <th class="w-30px" *matHeaderCellDef mat-sort-header>No.</th>
+      <td class="w-30px" *matCellDef="let dataSource; let i = index">
         {{ (paginator.pageIndex * paginator.pageSize) + (i + 1) }}
       </td>
     </ng-container>
