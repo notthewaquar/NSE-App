@@ -8,6 +8,7 @@ import { PayFormService } from '../services/payform.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { PaymentConfirmModalComponent } from '../my-modal/payment-confirm/payment-confirm-modal/payment-confirm-modal.component';
 import { DataStorageService } from '../services/data-storage.service';
+import { PayModel } from '../model/payform.model';
 
 @Component({
   selector: 'app-add-pay-form',
@@ -16,7 +17,9 @@ import { DataStorageService } from '../services/data-storage.service';
 })
 export class AddPayFormComponent implements OnInit {
   isLoading: boolean = false;
+  isSenderMobNoLoading: boolean = false;
   paymentForm: FormGroup;
+  payData: PayModel[];
   bankName: string[];
   payTypeOption: string[] = [
     'IMPS',
@@ -215,5 +218,39 @@ export class AddPayFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+  getOldPayDataData() {
+    this.isSenderMobNoLoading = true;
+    this.dataStorageService.fetchPayData()
+      .subscribe(res => {
+        this.payData = this.dataStorageService.payFormData;
+        console.log(this.payData);
+        this.checkIfNumberMatched();
+        this.isSenderMobNoLoading = false;
+      })
+  }
+  checkIfNumberMatched() {
+    let tempPayData = this.payData;
+    let tempSenderMobNo = this.paymentForm.value.senderMobNo;
+    for (let k in tempPayData) {
+      if (
+        tempPayData[k].senderMobNo === tempSenderMobNo
+      ) {
+        console.log('Match Found !!');
+        console.log(tempPayData[k]);
+        this.paymentForm.patchValue({
+          'benefName': tempPayData[k].benefName,
+          // 'senderMobNo': tempPayData[k].senderMobNo,
+          'senderName': tempPayData[k].senderName,
+          'accountNumber': tempPayData[k].accountNumber,
+          'payType': tempPayData[k].payType,
+          'ifscCode': tempPayData[k].ifscCode,
+          'bankName': tempPayData[k].bankName,
+          'payAmount': tempPayData[k].payAmount,
+        });
+      } else {
+        // console.log('No Match Found !!');
+      }
+    }
   }
 }

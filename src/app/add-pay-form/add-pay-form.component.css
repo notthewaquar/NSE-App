@@ -47,3 +47,9 @@ mat-card mat-form-field {
   justify-content: center;
   align-items: center;
 }
+.input-spinner {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+}

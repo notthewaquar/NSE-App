@@ -1,5 +1,4 @@
 <div *ngIf="!isLoading">
-
 <form
   [formGroup]="paymentForm"
   (ngSubmit)="onSubmit()">
@@ -21,12 +20,18 @@
     <mat-label>Sender Mobile Number:</mat-label>
     <input 
       matInput
-      formControlName="senderMobNo">
+      formControlName="senderMobNo"
+      (blur)="getOldPayDataData()">
     <mat-error 
       *ngIf="paymentForm.get('senderMobNo').hasError('required')">
       This field is required
     </mat-error>
+    <mat-spinner
+      *ngIf="isSenderMobNoLoading"
+      class="input-spinner"
+      [diameter]="20"></mat-spinner>
   </mat-form-field>
+  
   <!-- <mat-form-field class="w-50 w-sm-100" appearance="fill">
     <mat-label>Agent Shop Name: </mat-label>
     <input matInput value="NarayanShanti Enterprise">
