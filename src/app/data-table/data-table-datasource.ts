@@ -48,8 +48,8 @@ export class DataTableDataSource extends DataSource<PayModel> {
       this.paginator.page,
       this.sort.sortChange
     ];
-    console.log(11);
-    console.log(this.data);
+    // console.log(11);
+    // console.log(this.data);
 
     return merge(...dataMutations).pipe(map(() => {
       return this.getPagedData(this.getSortedData([...this.data]));

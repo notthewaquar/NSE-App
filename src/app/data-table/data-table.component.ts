@@ -65,10 +65,10 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
   onDeletePayData(delId: string) {
     this.dataSource.data.splice(10,1);
-    console.log(this.dataSource.data);
+    // console.log(this.dataSource.data);
     // return;
     this.openDialog();
-    console.log(delId);
+    // console.log(delId);
     this.dataStorageService.deletePaymentId = delId;
     // this.dataStorageService.deletePayData(delId)
     //   .subscribe(res => {
@@ -83,7 +83,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
   // applyFilter(event: Event) {

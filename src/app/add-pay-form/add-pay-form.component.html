@@ -150,13 +150,12 @@
 <button 
   mat-raised-button 
   type="button"
-  class="btn-submit"
+  class="btn-submit btn-reset"
   color="warn"
   (click)="resetForm()">
   Reset Form
   <i class="fas fa-times"></i>
   </button>
-  <br>
   <br>
   <!-- <button 
     mat-raised-button 
@@ -173,6 +172,10 @@
   *ngIf="isLoading">
   <mat-spinner></mat-spinner>
 </div>
+<div
+  class="black-overlay"
+  *ngIf="openfoundMatchCard"
+  (click)="closeMatchFoundCard()"></div>
 <div
   class="my-spinner"
   *ngIf="openfoundMatchCard">

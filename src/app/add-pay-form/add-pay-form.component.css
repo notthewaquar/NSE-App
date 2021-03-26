@@ -24,6 +24,13 @@ mat-card mat-form-field {
   margin-top: -3px;
   margin-left: 3px;
 }
+.btn-reset {
+  margin: 0 auto 0 20px;
+  font-size: 12px;
+  padding: 0 10px;
+  height: 30px;
+  line-height: initial;
+}
 .w-100 {
   width: 100%;
 }
@@ -56,6 +63,8 @@ mat-card mat-form-field {
 .match-found-card {
   width: 60vw;
   margin: 0;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 .match-found-card > div {
   width: 100%;

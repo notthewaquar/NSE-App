@@ -38,6 +38,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.btn-dark{
+.btn-dark {
   background-color: #434343 !important;
+}
+.black-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: rgb(0 0 0 / 35%);
+  top: 0;
+  left: 0;
 }

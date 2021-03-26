@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {MatDialogRef} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 // import { DataTableDataSource } from 'src/app/data-table/data-table-datasource';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 
@@ -15,6 +16,7 @@ export class DeletePayDataModalComponent implements OnInit {
   constructor(
     private dataStorageService: DataStorageService,
     public dialogRef:  MatDialogRef<DeletePayDataModalComponent>,
+    private router: Router
     // private dataTableDataSource: DataTableDataSource
   ) { }
 
@@ -36,6 +38,7 @@ export class DeletePayDataModalComponent implements OnInit {
         this.isLoading = false;
         this.onNoClick();
       });
+    // this.router.navigate(['/dashboard/manage-payment']);
   }
 
 }
