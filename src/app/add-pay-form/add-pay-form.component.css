@@ -53,3 +53,36 @@ mat-card mat-form-field {
   left: auto;
   right: 0;
 }
+.match-found-card {
+  width: 60vw;
+  margin: 0;
+}
+.match-found-card > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* .match-found-card h5 {
+  font-size: 16px;
+} */
+.match-found-card table {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 10px;
+  /* height: 250px;
+  overflow-y: auto; */
+}
+.match-found-card th,
+.match-found-card td {
+  text-align: center;
+  font-size: 14px;
+}
+.match-found-card td {
+  font-weight: 600;
+}
+@media only screen and (max-width: 500px) {
+  .match-found-card {
+    width: 80vw;
+  }
+}

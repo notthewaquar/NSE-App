@@ -21,6 +21,8 @@ export class AddPayFormComponent implements OnInit {
   paymentForm: FormGroup;
   payData: PayModel[];
   bankName: string[];
+  foundMatchedPayData = []
+  openfoundMatchCard = false;
   payTypeOption: string[] = [
     'IMPS',
     'NEFT'
@@ -74,6 +76,7 @@ export class AddPayFormComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
+    if (value === null) {return}
     const filterValue = value.toLowerCase();
     return this.bankName.filter(bankName => bankName.toLowerCase().indexOf(filterValue) === 0);
   }
@@ -224,7 +227,7 @@ export class AddPayFormComponent implements OnInit {
     this.dataStorageService.fetchPayData()
       .subscribe(res => {
         this.payData = this.dataStorageService.payFormData;
-        console.log(this.payData);
+        // console.log(this.payData);
         this.checkIfNumberMatched();
         this.isSenderMobNoLoading = false;
       })
@@ -232,25 +235,48 @@ export class AddPayFormComponent implements OnInit {
   checkIfNumberMatched() {
     let tempPayData = this.payData;
     let tempSenderMobNo = this.paymentForm.value.senderMobNo;
+    this.foundMatchedPayData = [];
     for (let k in tempPayData) {
       if (
         tempPayData[k].senderMobNo === tempSenderMobNo
       ) {
         console.log('Match Found !!');
-        console.log(tempPayData[k]);
-        this.paymentForm.patchValue({
-          'benefName': tempPayData[k].benefName,
-          // 'senderMobNo': tempPayData[k].senderMobNo,
-          'senderName': tempPayData[k].senderName,
-          'accountNumber': tempPayData[k].accountNumber,
-          'payType': tempPayData[k].payType,
-          'ifscCode': tempPayData[k].ifscCode,
-          'bankName': tempPayData[k].bankName,
-          'payAmount': tempPayData[k].payAmount,
-        });
-      } else {
-        // console.log('No Match Found !!');
-      }
+        console.log();
+        this.foundMatchedPayData.push(tempPayData[k]);
+        this.openfoundMatchCard = true;
+      } else {}
     }
+  }
+  patchFoundPayData(index: number) {
+    let payDataJSON = this.foundMatchedPayData[index];
+    console.log(payDataJSON);
+    // return;
+    this.paymentForm.patchValue({
+      'benefName': payDataJSON.benefName,
+      // 'senderMobNo': payDataJSON.senderMobNo,
+      'senderName': payDataJSON.senderName,
+      'accountNumber': payDataJSON.accountNumber,
+      'payType': payDataJSON.payType,
+      'ifscCode': payDataJSON.ifscCode,
+      'bankName': payDataJSON.bankName,
+      'payAmount': payDataJSON.payAmount,
+    });
+    this.openfoundMatchCard = false;
+  }
+  closeMatchFoundCard() {
+    this.openfoundMatchCard = false;
+  }
+  resetForm() {
+    this.paymentForm.reset();
+    this.paymentForm.patchValue({
+      'benefName': null,
+      'senderMobNo': null,
+      'senderName': null,
+      'accountNumber': null,
+      'payType': 'IMPS',
+      'ifscCode': null,
+      'bankName': null,
+      'payAmount': null
+    });
   }
 }
