@@ -1,7 +1,7 @@
 <div
   class="modal-wrapper"
   *ngIf="!inPaymentMode && !redirectToInvoice">
-  <h1 mat-dialog-title>Are you sure to Process this Transaction ?</h1>
+  <h1 mat-dialog-title>Are you sure to save this payment detail ?</h1>
   <div mat-dialog-content>
     <div class="main-div">
       <div>
@@ -30,7 +30,7 @@
       mat-button
       mat-raised-button
       color="primary"
-      (click)="gotoPayInvoice()">Pay</button>
+      (click)="gotoPayInvoice()">Save Detail</button>
     <button
       mat-button
       mat-raised-button
@@ -49,7 +49,7 @@
     <i class="far fa-check-circle"></i>
   </div>
   <strong></strong>
-  <p>Payment done successfully </p>
+  <p>Payment Detail successfully saved</p>
   <!-- <button
     type="button"
     class="close">

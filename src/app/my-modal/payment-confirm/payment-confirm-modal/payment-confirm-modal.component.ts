@@ -39,7 +39,7 @@ export class PaymentConfirmModalComponent implements OnInit {
   gotoPayInvoice() {
     this.dataStorageService.storePayData(this.payFormData)
     .subscribe(() => {
-      this.dataStorageService.openSnackBar('Payment done successfully', 'Okay');
+      this.dataStorageService.openSnackBar('Payment detail was successfully saved', 'Okay');
     });
     this.inPaymentMode = true;
     setTimeout(() => {

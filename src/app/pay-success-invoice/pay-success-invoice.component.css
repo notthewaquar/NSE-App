@@ -102,6 +102,11 @@
   font-weight: 700;
   color: #333;
   font-size: 14px;
+  margin-bottom: 0;
+}
+.gen-info {
+  color:#333;
+  font-size: 8px;
 }
 select::-ms-expand {
   display: none;
